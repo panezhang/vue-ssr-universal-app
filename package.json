@@ -1,0 +1,12 @@
+{
+  "name": "vue-ssr",
+  "version": "0.0.1",
+  "description": "Demo for Vue Server Render App",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git@git.panezhang.cn:demo/vue-ssr"
+  },
+  "author": "panezhang",
+  "license": "ISC"
+}
