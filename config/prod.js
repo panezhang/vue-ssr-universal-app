@@ -1,13 +1,13 @@
 /**
  * @author panezhang
- * @date 2017/11/17-下午4:22
- * @file default
+ * @date 2017/12/8-下午12:08
+ * @file prod
  */
 
 module.exports = {
     build: {
-        debug: true,
-        extractCSS: false
+        debug: false,
+        extractCSS: true
     },
 
     run: {

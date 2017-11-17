@@ -1,0 +1,22 @@
+{
+    "parser": "babel-eslint",
+    "extends": "airbnb",
+    "rules": {
+        "comma-dangle": [2, "never"],
+        "import/extensions": [2, "never", {"css": "always", "scss": "always", "json": "always"}],
+        "indent": [2, 4, {"SwitchCase": 1}],
+        "object-curly-spacing": [2, "never"],
+        "max-len": [2, 120, 4],
+        "no-console": [1],
+        "no-return-assign": [2, "except-parens"],
+        "no-underscore-dangle": [2, {"allow": ["_id"]}],
+        "padded-blocks": [2, {"classes": "always"}],
+
+        "class-methods-use-this": [0],
+        "import/no-extraneous-dependencies": [0],
+        "import/prefer-default-export": [0],
+        "jsx-a11y/href-no-hash": [0],
+        "no-param-reassign": [0],
+        "object-curly-newline": [0]
+    }
+}

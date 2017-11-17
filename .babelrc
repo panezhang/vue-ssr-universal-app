@@ -14,7 +14,16 @@
         "stage-3"
     ],
     "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "."
+                ]
+            }
+        ],
         "transform-runtime",
+        "transform-class-properties",
         "transform-decorators-legacy"
     ]
 }
