@@ -7,10 +7,7 @@
 module.exports = {
     build: {
         debug: false,
+        vueDebug: false,
         extractCSS: true
-    },
-
-    run: {
-        port: 20500
     }
 };

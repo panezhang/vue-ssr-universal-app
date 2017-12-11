@@ -10,7 +10,7 @@ import nodeExternals from 'webpack-node-externals';
 import VueSSRServerPlugin from 'vue-server-renderer/server-plugin';
 
 import {resolveSrc, resolveRelease} from 'tools/path';
-import {DEBUG} from './constant';
+import {GLOBAL_DEFINES} from './constant';
 import base from './webpack.base.config';
 
 export default merge(base, {
@@ -33,7 +33,7 @@ export default merge(base, {
 
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': DEBUG ? '"development"' : '"production"',
+            ...GLOBAL_DEFINES,
             'process.env.VUE_ENV': '"server"'
         }),
 

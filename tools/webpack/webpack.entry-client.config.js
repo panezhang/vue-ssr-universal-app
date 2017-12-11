@@ -9,7 +9,7 @@ import merge from 'webpack-merge';
 import VueSSRClientPlugin from 'vue-server-renderer/client-plugin';
 
 import {resolveSrc, resolveRelease} from 'tools/path';
-import {DEBUG} from './constant';
+import {GLOBAL_DEFINES} from './constant';
 import base from './webpack.base.config';
 
 export default merge(base, {
@@ -25,7 +25,7 @@ export default merge(base, {
 
     plugins: [
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': DEBUG ? '"development"' : '"production"',
+            ...GLOBAL_DEFINES,
             'process.env.VUE_ENV': '"client"'
         }),
 

@@ -8,6 +8,7 @@ import {resolve} from 'path';
 
 import config from 'config';
 import express from 'express';
+import opn from 'opn';
 
 const DEV = !!process.env.DEV;
 const PORT = config.get('run.port');
@@ -36,4 +37,15 @@ server.get('*', async (req, res) => {
     });
 });
 
-server.listen(PORT, err => (!err && console.log(`http://localhost:${PORT}`)));
+server.listen(PORT, (err) => {
+    if (err) {
+        console.error('启动 node 服务器失败', err);
+        return;
+    }
+
+    const address = `http://localhost:${PORT}`;
+    console.log(address);
+    if (DEV) {
+        opn(address);
+    }
+});

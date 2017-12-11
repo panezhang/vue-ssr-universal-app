@@ -4,7 +4,7 @@
  * @file app.js
  */
 
-import Vue from 'vue';
+import Vue from 'src/common/vue';
 
 export default () => {
     const app = new Vue({

@@ -7,6 +7,7 @@
 module.exports = {
     build: {
         debug: true,
+        vueDebug: true,
         extractCSS: false
     },
 

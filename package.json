@@ -38,6 +38,7 @@
     "fs-extra": "4.0.3",
     "memory-fs": "0.4.1",
     "minimist": "1.2.0",
+    "opn": "5.1.0",
     "raw-loader": "0.5.1",
     "webpack": "3.10.0",
     "webpack-dev-middleware": "1.12.2",
