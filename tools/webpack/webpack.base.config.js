@@ -45,6 +45,10 @@ export default {
         ]
     },
 
+    resolve: {
+        extensions: ['.vue', '.json', '.js']
+    },
+
     performance: {
         maxEntrypointSize: 300000,
         hints: !DEBUG && 'warning'

@@ -50,9 +50,8 @@ class RenderDev {
     }
 
     async get() {
-        const {renderer, initPromise} = this;
-        await initPromise;
-        return renderer;
+        await this.initPromise;
+        return this.renderer;
     }
 
     watchIndexHtml() { // read template from disk and watch

@@ -26,7 +26,7 @@ server.use((req, res, next) => {
 });
 
 server.get('*', async (req, res) => {
-    const context = {title: 'Hello SSR!'}; // here we can customize title etc.
+    const context = {title: 'Hello SSR!', url: req.url}; // here we can customize title etc.
     const renderer = await render.get();
     renderer.renderToString(context, (err, html) => {
         if (err) {

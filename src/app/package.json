@@ -1,4 +1,4 @@
 {
   "name": "app",
-  "main": "./app.js"
+  "main": "./app.vue"
 }
