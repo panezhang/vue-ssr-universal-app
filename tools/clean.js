@@ -11,7 +11,7 @@ async function clean() {
     await fs.remove('build');
 
     // create folders
-    await fs.ensureDir('build/public');
+    await fs.ensureDir('build/public/static');
 }
 
 export default clean;

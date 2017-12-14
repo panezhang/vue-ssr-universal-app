@@ -124,6 +124,7 @@ class RenderDev {
         const {template, bundle, clientManifest} = this;
         if (bundle && clientManifest) {
             this.renderer = createBundleRenderer(bundle, {
+                runInNewContext: false,
                 template,
                 clientManifest
             });

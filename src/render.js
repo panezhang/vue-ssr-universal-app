@@ -11,8 +11,9 @@ class Render {
 
     constructor() {
         const bundle = require('./vue-ssr-server-bundle.json'); // eslint-disable-line
-        const clientManifest = require('./public/vue-ssr-client-manifest.json'); // eslint-disable-line
+        const clientManifest = require('./public/static/vue-ssr-client-manifest.json'); // eslint-disable-line
         this.renderer = createBundleRenderer(bundle, {
+            runInNewContext: false,
             template,
             clientManifest
         });

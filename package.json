@@ -9,8 +9,10 @@
   "author": "panezhang",
   "license": "MIT",
   "dependencies": {
+    "compression": "1.7.1",
     "config": "1.28.1",
     "express": "4.16.2",
+    "serve-favicon": "2.4.5",
     "vue": "2.5.10",
     "vue-router": "3.0.1",
     "vue-server-renderer": "2.5.10",

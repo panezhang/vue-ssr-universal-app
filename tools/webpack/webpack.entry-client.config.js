@@ -18,8 +18,8 @@ export default merge(base, {
     },
 
     output: {
-        path: resolveRelease('public'),
-        publicPath: '/',
+        path: resolveRelease('./public/static'),
+        publicPath: '/static/',
         filename: '[name].[chunkhash].js'
     },
 

@@ -7,7 +7,9 @@
 import {resolve} from 'path';
 
 import config from 'config';
+import compression from 'compression';
 import express from 'express';
+import favicon from 'serve-favicon';
 import opn from 'opn';
 
 const DEV = !!process.env.DEV;
@@ -18,12 +20,15 @@ const Render = DEV ? require('./render.dev').default : require('./render').defau
 
 const render = new Render(server);
 
-// TODO may use an alternative path for performance
-server.use(express.static(resolve(__dirname, './public')));
-server.use((req, res, next) => {
+server.use(compression());
+server.use((req, res, next) => { // request logger
     console.log(req.method, req.url);
     next();
 });
+
+server.use(favicon(resolve(__dirname, './public/logo.png')));
+server.use('/robots.txt', express.static(resolve(__dirname, './public/robots.txt')));
+server.use('/static', express.static(resolve(__dirname, './public/static')));
 
 server.get('*', async (req, res) => {
     const context = {title: 'Hello SSR!', url: req.url}; // here we can customize title etc.
