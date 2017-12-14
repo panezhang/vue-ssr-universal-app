@@ -6,5 +6,8 @@
 
 import createApp from './main';
 
-const {app} = createApp();
-app.$mount('#app');
+const {app, router} = createApp();
+router.onReady(() => {
+    // TODO async fetch
+    app.$mount('#app');
+});

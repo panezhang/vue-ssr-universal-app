@@ -7,11 +7,8 @@
 import Router from 'vue-router';
 
 import Vue from 'src/common/vue';
-import RouterMap from './RouterMap';
+import routes from './routes';
 
 Vue.use(Router);
 
-export const createRouter = () => new Router({
-    mode: 'history',
-    routes: Object.values(RouterMap)
-});
+export const createRouter = () => new Router({mode: 'history', routes});

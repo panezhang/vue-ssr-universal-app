@@ -14,8 +14,8 @@ import webpack from 'webpack';
 import createDevMiddleware from 'webpack-dev-middleware';
 import createHotMiddleware from 'webpack-hot-middleware';
 
-import entryClientConfig from 'tools/webpack/webpack.entry-client.config';
-import entryServerConfig from 'tools/webpack/webpack.entry-server.config';
+import entryClientConfig from 'tools/webpack/webpack.entry-client.config'; // eslint-disable-line import/extensions
+import entryServerConfig from 'tools/webpack/webpack.entry-server.config'; // eslint-disable-line import/extensions
 
 function readJsonAndParse(fileSystem, filePath) {
     try {
