@@ -6,5 +6,23 @@
  */
 
 export default {
-    name: 'Demo'
+    name: 'Demo',
+
+    props: {
+        id: {
+            required: true
+        }
+    },
+
+    asyncData: ({store, route}) => store.dispatch('fetchItem', route.params.id),
+
+    computed: {
+        nextId() {
+            return +this.id + 1;
+        },
+
+        item() {
+            return this.$store.state.items[this.id];
+        }
+    }
 };

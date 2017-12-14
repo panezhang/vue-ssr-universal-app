@@ -13,9 +13,10 @@ export default [
         component: () => import('src/app/view/index')
     },
     {
-        path: '/demo',
+        path: '/demo/:id',
         name: 'demo',
-        component: () => import('src/app/view/demo')
+        component: () => import('src/app/view/demo'),
+        props: true
     },
     {
         path: '*',

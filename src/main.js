@@ -4,24 +4,23 @@
  * @file main
  */
 
+import {sync} from 'vuex-router-sync';
+
 import Vue from 'src/common/vue';
 import App from 'src/app';
 import {createRouter} from 'src/app/router';
+import {createStore} from 'src/app/store';
 
 export default () => {
     const router = createRouter();
+    const store = createStore();
+    sync(store, router);
+
     const app = new Vue({
         router,
-
-        created() {
-            console.log('Hello from console.');
-        },
-
-        render(h) {
-            return h(App);
-        }
+        store,
+        render: h => h(App)
     });
 
-    return {app, router};
+    return {app, router, store};
 };
-
