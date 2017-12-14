@@ -4,7 +4,11 @@
  * @file entry-server
  */
 
-import createApp from './main';
+import {
+    createApp,
+    registerComponentsStoreModules,
+    fetchComponentsAsyncData
+} from './main';
 
 export default context => new Promise((resolve, reject) => {
     const {app, router, store} = createApp(context);
@@ -14,14 +18,8 @@ export default context => new Promise((resolve, reject) => {
     router.onReady(
         () => {
             const matchedComponents = router.getMatchedComponents();
-
-            // 处理 asyncData
-            const asyncDataPromises = matchedComponents.map(Compnent => (Compnent.asyncData && Compnent.asyncData({
-                store,
-                route: router.currentRoute
-            })));
-
-            Promise.all(asyncDataPromises).then(() => {
+            registerComponentsStoreModules(store, matchedComponents);
+            fetchComponentsAsyncData(store, router.currentRoute, matchedComponents).then(() => {
                 context.state = store.state; // 将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML
                 resolve(app);
             }).catch(reject);

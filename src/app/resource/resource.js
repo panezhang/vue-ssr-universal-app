@@ -4,7 +4,4 @@
  * @file resource
  */
 
-export const fetchItem = id => new Promise((resolve) => {
-    console.log('fetching item', id);
-    setTimeout(() => resolve({id, timestamp: Date.now()}), 1e3);
-});
+export * from './demo';
