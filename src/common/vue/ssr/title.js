@@ -3,6 +3,7 @@
  * @date 2017/12/19-下午2:46
  * @file title
  */
+/* global document */
 
 export const DEFAULT_TITLE = 'Hello SSR!';
 
@@ -11,6 +12,8 @@ function getTitle(vm) {
     if (title) {
         return typeof title === 'function' ? title.call(vm) : title;
     }
+
+    return '';
 }
 
 function setServerTitle(vm) {

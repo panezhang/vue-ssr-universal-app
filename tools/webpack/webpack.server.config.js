@@ -24,7 +24,7 @@ export default merge(base, {
     },
 
     devtool: '#source-map',
-    entry: resolveSrc('./server.js'),
+    entry: resolveSrc('./start'),
 
     output: {
         path: resolveRelease(),

@@ -11,11 +11,20 @@ import {createBundleRenderer} from 'vue-server-renderer';
 import chokidar from 'chokidar';
 import MFS from 'memory-fs';
 import webpack from 'webpack';
-import createDevMiddleware from 'webpack-dev-middleware';
-import createHotMiddleware from 'webpack-hot-middleware';
+
+import {
+    devMiddleware as createKoaDevMiddleware,
+    hotMiddleware as createKoaHotMiddleware
+} from 'koa-webpack-middleware';
+import createExpressDevMiddleware from 'webpack-dev-middleware';
+import createExpressHotMiddleware from 'webpack-hot-middleware';
 
 import entryClientConfig from 'tools/webpack/webpack.entry-client.config'; // eslint-disable-line import/extensions
 import entryServerConfig from 'tools/webpack/webpack.entry-server.config'; // eslint-disable-line import/extensions
+import {isKoa} from './dev-env';
+
+const createDevMiddleware = isKoa() ? createKoaDevMiddleware : createExpressDevMiddleware;
+const createHotMiddleware = isKoa() ? createKoaHotMiddleware : createExpressHotMiddleware;
 
 function readJsonAndParse(fileSystem, filePath) {
     try {

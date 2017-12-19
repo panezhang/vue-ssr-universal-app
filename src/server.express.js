@@ -4,34 +4,31 @@
  * @file server
  */
 
-import {resolve} from 'path';
+import path from 'path';
 
-import config from 'config';
 import compression from 'compression';
 import express from 'express';
 import favicon from 'serve-favicon';
-import opn from 'opn';
 
 import {DEFAULT_TITLE} from './common/vue/ssr/title';
+import {DEV} from './dev-env';
 
-const DEV = !!process.env.DEV;
-const PORT = config.get('run.port');
-
-const server = express();
 const Render = DEV ? require('./render.dev').default : require('./render').default;
 
-const render = new Render(server);
+const resolvePublic = (...args) => path.resolve(__dirname, 'public', ...args);
+const server = express();
 
 server.use(compression());
-server.use((req, res, next) => { // request logger
+server.use((req, res, next) => {
     console.log(req.method, req.url);
     next();
 });
 
-server.use(favicon(resolve(__dirname, './public/logo.png')));
-server.use('/robots.txt', express.static(resolve(__dirname, './public/robots.txt')));
-server.use('/static', express.static(resolve(__dirname, './public/static')));
+server.use(favicon(resolvePublic('./logo.png')));
+server.use('/robots.txt', express.static(resolvePublic('./robots.txt')));
+server.use('/static', express.static(resolvePublic('./static')));
 
+const render = new Render(server);
 server.get('*', async (req, res) => {
     const context = {title: DEFAULT_TITLE, url: req.url}; // here we can customize title etc.
     const renderer = await render.get();
@@ -44,15 +41,4 @@ server.get('*', async (req, res) => {
     });
 });
 
-server.listen(PORT, (err) => {
-    if (err) {
-        console.error('启动 node 服务器失败', err);
-        return;
-    }
-
-    const address = `http://localhost:${PORT}`;
-    console.log(address);
-    if (DEV) {
-        opn(address);
-    }
-});
+export default server;

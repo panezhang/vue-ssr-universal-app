@@ -7,7 +7,7 @@
 
 export const DEBUG = __DEBUG__;
 export const VUE_DEBUG = __VUE_DEBUG__;
-export const VUE_ENV = process.env.VUE_ENV;
+export const VUE_ENV = process.env.VUE_ENV; // eslint-disable-line
 
 const VUE_ENV_TYPE = {
     CLIENT: 'client',
