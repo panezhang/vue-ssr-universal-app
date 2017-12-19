@@ -6,10 +6,10 @@
 
 import {sync} from 'vuex-router-sync';
 
-import Vue from 'src/common/vue';
-import App from 'src/app';
-import {createRouter} from 'src/app/router';
-import {createStore} from 'src/app/store';
+import Vue from './common/vue';
+import App from './app';
+import {createRouter} from './app/router';
+import {createStore} from './app/store';
 
 export const createApp = () => {
     const router = createRouter();

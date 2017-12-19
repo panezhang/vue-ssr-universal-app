@@ -6,5 +6,6 @@
  */
 
 export default {
-    name: 'NotFound'
+    name: 'NotFound',
+    title: '宇宙边界'
 };

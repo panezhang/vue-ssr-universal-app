@@ -10,6 +10,10 @@ import demo, {A_TYPES} from 'src/app/store/module/demo';
 export default {
     name: 'Demo',
 
+    title() {
+        return `Demo ${this.id}`;
+    },
+
     props: {
         id: {
             required: true

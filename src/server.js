@@ -12,6 +12,8 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import opn from 'opn';
 
+import {DEFAULT_TITLE} from './common/vue/ssr/title';
+
 const DEV = !!process.env.DEV;
 const PORT = config.get('run.port');
 
@@ -31,7 +33,7 @@ server.use('/robots.txt', express.static(resolve(__dirname, './public/robots.txt
 server.use('/static', express.static(resolve(__dirname, './public/static')));
 
 server.get('*', async (req, res) => {
-    const context = {title: 'Hello SSR!', url: req.url}; // here we can customize title etc.
+    const context = {title: DEFAULT_TITLE, url: req.url}; // here we can customize title etc.
     const renderer = await render.get();
     renderer.renderToString(context, (err, html) => {
         if (err) {

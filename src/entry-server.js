@@ -5,8 +5,13 @@
  */
 
 import {createApp} from './main';
+
+import Vue from './common/vue';
 import {fetchComponentsAsyncData} from './common/vue/ssr/async-data';
 import {registerComponentsStoreModules} from './common/vue/ssr/store-module';
+import {serverMixin} from './common/vue/ssr/title';
+
+Vue.mixin(serverMixin);
 
 export default context => new Promise((resolve, reject) => {
     const {app, router, store} = createApp(context);

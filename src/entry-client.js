@@ -4,13 +4,16 @@
  * @file client
  */
 
-import Vue from 'src/common/vue';
 import {createApp} from './main';
+
+import Vue from './common/vue';
 import {fetchComponentsAsyncData, reuseServerState, mixin as asyncDataMixin} from './common/vue/ssr/async-data';
 import {registerComponentsStoreModules, mixin as storeModuleMixin} from './common/vue/ssr/store-module';
+import {clientMixin} from './common/vue/ssr/title';
 
 Vue.mixin(asyncDataMixin);
 Vue.mixin(storeModuleMixin);
+Vue.mixin(clientMixin);
 const {app, router, store} = createApp();
 
 router.onReady(() => {

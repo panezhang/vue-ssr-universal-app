@@ -6,5 +6,6 @@
  */
 
 export default {
-    name: 'Index'
+    name: 'Index',
+    title: '首页'
 };
