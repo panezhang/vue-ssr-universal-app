@@ -7,3 +7,12 @@
 
 export const DEBUG = __DEBUG__;
 export const VUE_DEBUG = __VUE_DEBUG__;
+export const VUE_ENV = process.env.VUE_ENV;
+
+const VUE_ENV_TYPE = {
+    CLIENT: 'client',
+    SERVER: 'server'
+};
+
+export const isServer = () => VUE_ENV === VUE_ENV_TYPE.SERVER;
+export const isClient = () => VUE_ENV === VUE_ENV_TYPE.CLIENT;

@@ -4,11 +4,9 @@
  * @file entry-server
  */
 
-import {
-    createApp,
-    registerComponentsStoreModules,
-    fetchComponentsAsyncData
-} from './main';
+import {createApp} from './main';
+import {fetchComponentsAsyncData} from './common/vue/ssr/async-data';
+import {registerComponentsStoreModules} from './common/vue/ssr/store-module';
 
 export default context => new Promise((resolve, reject) => {
     const {app, router, store} = createApp(context);

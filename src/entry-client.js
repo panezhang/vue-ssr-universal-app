@@ -5,35 +5,13 @@
  */
 
 import Vue from 'src/common/vue';
-import {
-    createApp,
+import {createApp} from './main';
+import {fetchComponentsAsyncData, reuseServerState, mixin as asyncDataMixin} from './common/vue/ssr/async-data';
+import {registerComponentsStoreModules, mixin as storeModuleMixin} from './common/vue/ssr/store-module';
 
-    reuseServerState,
-    registerComponentsStoreModules,
-    unregisterStoreModules,
-
-    fetchComponentsAsyncData
-} from './main';
-
+Vue.mixin(asyncDataMixin);
+Vue.mixin(storeModuleMixin);
 const {app, router, store} = createApp();
-
-Vue.mixin({
-    beforeRouteUpdate(to, from, next) {
-        const {asyncData} = this.$options;
-        if (!asyncData) {
-            next();
-            return;
-        }
-
-        asyncData({store: this.$store, route: to}).then(() => next()).catch(next);
-    },
-
-    destroyed() {
-        const {storeModules} = this.$options;
-        if (!storeModules) return;
-        unregisterStoreModules(store, storeModules);
-    }
-});
 
 router.onReady(() => {
     const matchedComponents = router.getMatchedComponents();
