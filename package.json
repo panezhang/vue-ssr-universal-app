@@ -13,9 +13,9 @@
     "config": "1.28.1",
     "express": "4.16.2",
     "koa": "2.4.1",
+    "koa-body": "2.5.0",
     "koa-compress": "2.0.0",
     "koa-favicon": "2.0.0",
-    "koa-logger": "3.1.0",
     "koa-mount": "3.0.0",
     "koa-send": "4.1.2",
     "koa-static": "4.0.2",
@@ -74,5 +74,8 @@
     "express": "DEV=true SERVER_TYPE=express babel-node src/start",
     "koa": "DEV=true SERVER_TYPE=koa babel-node src/start",
     "start": "npm run koa"
+  },
+  "engines": {
+    "node": ">= 7.6.0"
   }
 }
