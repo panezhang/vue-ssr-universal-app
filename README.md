@@ -1,8 +1,8 @@
 # Universal Vue SSR App Seed Project
 
-As [vue-cli](https://github.com/vuejs/vue-cli) is an excellent scaffold to start a Vue SPA project, but to get the full benefits of vue-ssr still pains. [nuxt.js](https://nuxtjs.org/) is too heavy and not flexible enough, while [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0) seems a little complicated.
+As [vue-cli](https://github.com/vuejs/vue-cli) is an excellent scaffold to start a Vue SPA project, but to get the full benefits of Vue SSR still pains. [nuxt.js](https://nuxtjs.org/) is too heavy and not flexible enough, while [vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0) seems a little complicated.
 
-So, this repo is target to detail **How to start a universal web app using vue-ssr with less pains**.
+So, this repo is target to detail **How to start a universal web app using Vue SSR with less pains**.
 
 ## Get Started
 
