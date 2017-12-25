@@ -57,35 +57,32 @@
 
 
 
-## 一些细节说明
-
-### SSR 本质是什么
-
-在服务器端渲染出 Web APP 的一个**快照**，并在浏览器端去**混合**成一个真正具有生命周期的 Web APP。
-
-因此，我们在为 SSR 增加通用功能的时候，需要同时考虑该功能在**服务器端渲染快照**时，要进行什么操作；在**浏览器端混合**、**路由变化**、**路由更新**时，分别要进行什么操作。
-
-
+## 细节说明
 
 ### 这个项目的 SSR 主要实现了什么功能？
 
 - 封装了服务器端 render.js (prod) 和 render.dev.js (dev)
 - [async-data](https://github.com/panezhang/vue-ssr-universal-app/blob/master/src/common/vue/ssr/async-data.js) 服务器端数据预取及浏览器端状态复用
-
-  - 服务器端渲染快照：进行数据预取，并将状态写入 `window.__INITIAL_STATE__`
-  - 浏览器端混合：将 `window.__INITIAL_STATE__` 同步到 store
-  - 浏览器端路由变化：调用 async data hook，在浏览器端获取数据
-  - 浏览器端路由更新：调用 async data hook，在浏览器端获取数据
+  - 服务器端
+    - 渲染快照：进行数据预取，并将状态写入 `window.__INITIAL_STATE__`
+  - 浏览器端
+    - 混合：将 `window.__INITIAL_STATE__` 同步到 store
+    - 路由变化：调用 async data hook，在浏览器端获取数据
+    - 路由更新：调用 async data hook，在浏览器端获取数据
 - [store-module](https://github.com/panezhang/vue-ssr-universal-app/blob/master/src/common/vue/ssr/store-module.js) 声明式的自动加载 store 模块（避免在大型项目中 store 过大
-
-  - 服务器端渲染快照：在数据预取前，注册 store 模块
-  - 浏览器端混合：在同步 store 状态之前，注册 store 模块
-  - 浏览器端路由变化：注销不需要的模块，并注册新模块
-  - 浏览器端路由更新：无需操作
+  - 服务器端
+    - 渲染快照：在数据预取前，注册 store 模块
+  - 浏览器端
+    - 混合：在同步 store 状态之前，注册 store 模块
+    - 路由变化：注销不需要的模块，并注册新模块
+    - 路由更新：无需操作
 - [title](https://github.com/panezhang/vue-ssr-universal-app/blob/master/src/common/vue/ssr/title.js) 服务端预渲染 title，浏览器端切换页面时更新 title
-  - 服务器端渲染快照：在数据预取之后（注意这里是之后），设置 $ssrContext.title，用于填充模板
-  - 浏览器端路由变化：更新 document.title
-  - 浏览器端路由更新：更新 document.title
+  - 服务器端
+    - 渲染快照：在数据预取之后（注意这里是之后），设置 $ssrContext.title，用于填充模板
+  - 浏览器端
+    - 混合：无需操作
+    - 路由变化：更新 document.title
+    - 路由更新：更新 document.title
 
 
 
@@ -95,26 +92,13 @@
 - 代码层面上
   - 将开发时的逻辑完全从 server.js 中剥离，封装到 render.dev.js 中，使得 server.js 代码大大精简 
     - [server.express.js](https://github.com/panezhang/vue-ssr-universal-app/blob/master/src/server.express.js) VS [vue hacknews server.js](https://github.com/vuejs/vue-hackernews-2.0/blob/master/server.js)，大致只有三分之一的代码量。
-    - [render.dev.js](https://github.com/panezhang/vue-ssr-universal-app/blob/master/src/render.dev.js) VS [setup-dev-server.js](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js) 将 callback 的形式改为主动暴露一个 get 函数，逻辑上更清晰。
+    - [render.dev.js](https://github.com/panezhang/vue-ssr-universal-app/blob/master/src/render.dev.js) VS [setup-dev-server.js](https://github.com/vuejs/vue-hackernews-2.0/blob/master/build/setup-dev-server.js) 将 callback 的形式改为主动暴露一个 get 函数，逻辑解耦
   - 使用 node-config 区分开发和生成环境的配置项
   - 提供 koa 版的 server 实现（包括开发模式和生产模式
+  - 支持在 component 上配置 storeModules，并自动动态 register/unregister 声明的 module
 - 构建层面上
   - 多打包了一个 server.js，使得其可以正常使用任何想要用的新语言特性，例如 `import`
 
-
-
-### render.dev.js
-
-### 浏览器端混合时的注意事项
-
-- router 钩子添加的时机
-- 复用 server 端状态的时机
-
-### router 规范
-
-### serve 静态资源
-
-### koa error handle
 
 
 
@@ -125,5 +109,5 @@
 - 更完整的错误处理
 - Cache 机制
 - SSR 开关
-- PWA & service worker
+- PWA & service [worker](https://docs.npmjs.com/misc/scope)
 

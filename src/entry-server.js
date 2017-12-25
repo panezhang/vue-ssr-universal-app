@@ -30,6 +30,4 @@ export default context => new Promise((resolve, reject) => {
 
         reject // 这里的 reject 会在 renderToString 的时候接收到
     );
-
-    return app;
 });
