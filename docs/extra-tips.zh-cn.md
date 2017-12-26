@@ -1,5 +1,7 @@
-router 规范
+## Extra TIPS
 
-serve 静态资源
+TODO
 
-koa error handle
+- router 规范
+- serve 静态资源
+- koa error handle

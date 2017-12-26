@@ -104,10 +104,18 @@
 
 ## TODO List
 
+### 项目层面
+
 - 引入 Typescript
+- 对一些简单纯后端渲染页面，支持传统模板引擎的方式
+- 静态资源管理 & 纯静态页面上传方案
+- PWA & service worker
+
+
+### Vue SSR
+
 - 为不同的 view 定制不同 favicon、meta
 - 更完整的错误处理
 - Cache 机制
 - SSR 开关
-- PWA & service [worker](https://docs.npmjs.com/misc/scope)
 
